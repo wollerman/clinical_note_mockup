@@ -7,6 +7,7 @@ import { NoteSectionComponent } from './note-section/note-section.component';
 import { ProblemListComponent } from './problem-list/problem-list.component';
 import { LabListComponent } from './lab-list/lab-list.component';
 import { ReferralListComponent } from './referral-list/referral-list.component';
+import {TooltipModule} from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ReferralListComponent } from './referral-list/referral-list.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    TooltipModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
