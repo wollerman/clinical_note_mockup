@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {NoteSectionComponent} from './note-section/note-section.component';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+
+  notes: NoteSectionComponent[];
+
+  constructor() {
+
+    this.notes = [
+      new NoteSectionComponent(),
+      new NoteSectionComponent(),
+      new NoteSectionComponent(),
+      new NoteSectionComponent(),
+      new NoteSectionComponent(),
+      new NoteSectionComponent(),
+      new NoteSectionComponent(),
+      new NoteSectionComponent()
+  ]
+    ;
+
+  }
+
 }

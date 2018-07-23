@@ -1,0 +1,26 @@
+<h3>Problems</h3>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th scope="col">Description</th>
+    <th scope="col">ICD Dx Code</th>
+    <th scope="col">Status</th>
+    <th scope="col">Diagnosed</th>
+    <th scope="col">
+      <button class="btn btn-success">Add</button>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let problem of problemList">
+    <th scope="row">{{problem.description}}</th>
+    <td>{{problem.icd10}}</td>
+    <td>{{problem.status}}</td>
+    <td>{{problem.diagnosed}}</td>
+    <td>
+      <button class="btn btn-dark">Details</button>
+    </td>
+  </tr>
+  </tbody>
+
+</table>

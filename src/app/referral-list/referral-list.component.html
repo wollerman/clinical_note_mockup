@@ -1,0 +1,23 @@
+<h3>Referrals</h3>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Name</th>
+    <th scope="col">Type</th>
+    <th scope="col">Status</th>
+    <th scope="col">
+      <button class="btn btn-success">Add</button>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let referral of referralList">
+    <th scope="row">{{referral.name}}</th>
+    <td>{{referral.type}}</td>
+    <td>{{referral.status}}</td>
+    <td>
+      <button class="btn btn-dark">Details</button>
+    </td>
+  </tr>
+  </tbody>
+</table>

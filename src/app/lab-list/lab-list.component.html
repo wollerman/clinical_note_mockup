@@ -1,0 +1,23 @@
+<h3>Labs</h3>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Tests</th>
+    <th scope="col">Date</th>
+    <th scope="col">Status</th>
+    <th scope="col">
+      <button class="btn btn-success">Add</button>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let lab of labList">
+    <th scope="row">{{lab.test}}</th>
+    <td>{{lab.date}}</td>
+    <td>{{lab.status}}</td>
+    <td>
+      <button class="btn btn-dark">Details</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
