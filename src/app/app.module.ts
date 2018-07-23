@@ -7,7 +7,7 @@ import { NoteSectionComponent } from './note-section/note-section.component';
 import { ProblemListComponent } from './problem-list/problem-list.component';
 import { LabListComponent } from './lab-list/lab-list.component';
 import { ReferralListComponent } from './referral-list/referral-list.component';
-import {TooltipModule} from 'ngx-bootstrap';
+import {ModalModule, TooltipModule} from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,8 @@ import {TooltipModule} from 'ngx-bootstrap';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    TooltipModule.forRoot()
+    TooltipModule.forRoot(),
+    ModalModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]
