@@ -10,6 +10,7 @@ export class ProblemListComponent implements OnInit {
 
   problemList: Problem[];
   public modalRef: BsModalRef;
+  public newProblem: string;
 
   constructor(private modalService: BsModalService) {
     this.problemList = [
@@ -27,6 +28,11 @@ export class ProblemListComponent implements OnInit {
 
   public openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
+  }
+
+  public onConfirm() {
+    this.modalRef.hide();
+    console.log(this.newProblem);
   }
 
 }

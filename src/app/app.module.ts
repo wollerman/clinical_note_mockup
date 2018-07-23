@@ -8,6 +8,7 @@ import { ProblemListComponent } from './problem-list/problem-list.component';
 import { LabListComponent } from './lab-list/lab-list.component';
 import { ReferralListComponent } from './referral-list/referral-list.component';
 import {ModalModule, TooltipModule} from 'ngx-bootstrap';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -15,13 +16,14 @@ import {ModalModule, TooltipModule} from 'ngx-bootstrap';
     NoteSectionComponent,
     ProblemListComponent,
     LabListComponent,
-    ReferralListComponent
+    ReferralListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
