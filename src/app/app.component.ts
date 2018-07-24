@@ -1,5 +1,7 @@
-import {Component} from '@angular/core';
-import {NoteSection, NoteSectionComponent} from './note-section/note-section.component';
+import {Component, TemplateRef} from '@angular/core';
+import {NoteSection} from './note-section/note-section.component';
+import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import {Problem} from './problem-list/problem-list.component';
 
 @Component({
   selector: 'app-root',
@@ -8,12 +10,17 @@ import {NoteSection, NoteSectionComponent} from './note-section/note-section.com
 })
 export class AppComponent {
 
+  focused: NoteSection;
+  focusedList: any[];
+
   presentIllnessNotes: NoteSection[];
   medicalHistoryNotes: NoteSection[];
   familyHistoryNotes: NoteSection[];
   socialHistoryNotes: NoteSection[];
 
-  constructor() {
+  public modalRef: BsModalRef;
+
+  constructor(private modalService: BsModalService) {
 
     this.presentIllnessNotes = [
       new NoteSection('Patient reported pain in right hand')
@@ -37,8 +44,32 @@ export class AppComponent {
     noteList.push(new NoteSection());
   }
 
-  remove(noteSection: NoteSection, noteList: any[]) {
-    noteList.splice(noteList.indexOf(noteSection), 1);
+  public openModal(noteSection: NoteSection, noteList: any[], template: TemplateRef<any>) {
+    this.focused = noteSection;
+    this.focusedList = noteList;
+    if (noteSection.text) {
+      this.modalRef = this.modalService.show(template);
+    } else {
+      this.remove();
+    }
+
   }
+
+
+  remove() {
+    this.focusedList.splice(this.focusedList.indexOf(this.focused), 1);
+    this.modalRef.hide();
+  }
+
+  dismiss() {
+    this.focused = undefined;
+    this.focusedList = undefined;
+    this.modalRef.hide();
+  }
+
+  connect() {
+
+  }
+
 
 }

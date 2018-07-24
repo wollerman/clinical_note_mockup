@@ -1,13 +1,13 @@
 <!--<ul class="nav nav-tabs nav-fill">-->
-  <!--<li class="nav-item">-->
-    <!--<a class="nav-link active" href="#">New Appointment Clinical Notes</a>-->
-  <!--</li>-->
-  <!--<li class="nav-item">-->
-    <!--<a class="nav-link" href="#">Review</a>-->
-  <!--</li>-->
-  <!--<li class="nav-item">-->
-    <!--<a class="nav-link" href="#">Sign</a>-->
-  <!--</li>-->
+<!--<li class="nav-item">-->
+<!--<a class="nav-link active" href="#">New Appointment Clinical Notes</a>-->
+<!--</li>-->
+<!--<li class="nav-item">-->
+<!--<a class="nav-link" href="#">Review</a>-->
+<!--</li>-->
+<!--<li class="nav-item">-->
+<!--<a class="nav-link" href="#">Sign</a>-->
+<!--</li>-->
 <!--</ul>-->
 
 <div class="container-flex pt-1">
@@ -17,25 +17,29 @@
       <div class="box-shadow mx-auto text-left" style="width: 97%;">
         <h4>History of Present Illness</h4>
         <div *ngFor="let note of presentIllnessNotes">
-          <app-note-section [text]="note.text" [type]="note.type" (removeEmit)="remove($event, presentIllnessNotes)"></app-note-section>
+          <app-note-section [text]="note.text" [type]="note.type"
+                            (removeEmit)="openModal($event, presentIllnessNotes, removeModal)"></app-note-section>
         </div>
         <button class="btn btn-secondary mb-4" (click)="add(presentIllnessNotes)">Add</button>
 
         <h4>Medical History</h4>
         <div *ngFor="let note of medicalHistoryNotes">
-          <app-note-section [text]="note.text" [type]="note.type" (removeEmit)="remove($event, medicalHistoryNotes)"></app-note-section>
+          <app-note-section [text]="note.text" [type]="note.type"
+                            (removeEmit)="openModal($event, medicalHistoryNotes, removeModal)"></app-note-section>
         </div>
         <button class="btn btn-secondary mb-4" (click)="add(medicalHistoryNotes)">Add</button>
 
         <h4>Family History</h4>
         <div *ngFor="let note of familyHistoryNotes">
-          <app-note-section [text]="note.text" [type]="note.type" (removeEmit)="remove($event, familyHistoryNotes)"></app-note-section>
+          <app-note-section [text]="note.text" [type]="note.type"
+                            (removeEmit)="openModal($event, familyHistoryNotes, removeModal)"></app-note-section>
         </div>
         <button class="btn btn-secondary mb-4" (click)="add(familyHistoryNotes)">Add</button>
 
         <h4>Social History</h4>
         <div *ngFor="let note of socialHistoryNotes">
-          <app-note-section [text]="note.text" [type]="note.type" (removeEmit)="remove($event, socialHistoryNotes)"></app-note-section>
+          <app-note-section [text]="note.text" [type]="note.type"
+                            (removeEmit)="openModal($event, socialHistoryNotes, removeModal)"></app-note-section>
         </div>
         <button class="btn btn-secondary mb-4" (click)="add(socialHistoryNotes)">Add</button>
 
@@ -60,3 +64,28 @@
     </div>
   </div>
 </div>
+
+
+<ng-template #removeModal>
+  <div class="modal-header">
+  </div>
+  <div class="modal-body">
+    Remove "{{focused.text}}" note?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="dismiss()">Cancel</button>
+    <button type="button" class="btn btn-danger" (click)="remove()">Remove</button>
+  </div>
+</ng-template>
+
+<ng-template #connectModal>
+  <div class="modal-header">
+  </div>
+  <div class="modal-body">
+    Connect Modal
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="dismiss()">Cancel</button>
+    <button type="button" class="btn btn-danger" (click)="connect()">Connect</button>
+  </div>
+</ng-template>
