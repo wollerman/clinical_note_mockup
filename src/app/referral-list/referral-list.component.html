@@ -1,12 +1,12 @@
-<h3>Referrals</h3>
-<table class="table">
+<h3 class="text-left">Referrals</h3>
+<table class="table table-sm">
   <thead>
   <tr>
     <th scope="col">Name</th>
     <th scope="col">Type</th>
     <th scope="col">Status</th>
     <th scope="col">
-      <button class="btn btn-success">Add</button>
+      <button class="btn btn-sm btn-success">Add</button>
     </th>
   </tr>
   </thead>
@@ -15,8 +15,11 @@
     <th scope="row">{{referral.name}}</th>
     <td>{{referral.type}}</td>
     <td>{{referral.status}}</td>
-    <td>
-      <button class="btn btn-dark">Details</button>
+    <td style="width: 20%">
+      <button class="btn btn-sm btn-secondary">View Source</button>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="openModal(removeProblem, problem)">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </td>
   </tr>
   </tbody>

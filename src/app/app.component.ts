@@ -20,7 +20,7 @@ export class AppComponent {
     ];
 
     this.medicalHistoryNotes = [
-      new NoteSection('test1', 'Medical History'),
+      new NoteSection('Patient reported difficulty swallowing due to Achalasia.', 'Medical History'),
     ];
 
     this.familyHistoryNotes = [
