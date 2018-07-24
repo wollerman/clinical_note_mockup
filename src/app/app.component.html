@@ -74,7 +74,66 @@
 
 
           <h4 id="allergies">Allergies</h4>
+          <table class="table table-sm">
+            <thead>
+            <tr>
+              <th scope="col" style="width: 25%">Name</th>
+              <th scope="col">Onset Date</th>
+              <th scope="col">Status</th>
+              <th scope="col" style="width: 20%">
+                <button type="button" class="btn btn-sm btn-success" (click)="openAddAllergy(addAllergModaly)"
+                        tooltip="Add a new lab.">
+                  Add
+                </button>
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let allergy of allergyList">
+              <th scope="row" style="width: 25%">{{allergy.name}}</th>
+              <td>{{allergy.onset_date}}</td>
+              <td>{{allergy.status}}</td>
+              <td style="width: 20%">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="openModal(removeModal, allergy)">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+
+
           <h4 id="medications">Medications</h4>
+          <table class="table table-sm table-hover">
+            <thead>
+            <tr>
+              <th scope="col" style="width: 25%">Name</th>
+              <th scope="col">ICD Dx Code</th>
+              <th scope="col">Status</th>
+              <th scope="col">Diagnosed</th>
+              <th scope="col" style="width: 20%">
+                <button type="button" class="btn btn-sm btn-success" (click)="openAddMed(addMedication)"
+                        tooltip="Add a new problem.">
+                  Add
+                </button>
+              </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let med of medicationList">
+              <th scope="row" style="width: 25%">{{med.name}}</th>
+              <td>{{med.description}}</td>
+              <td>{{med.status}}</td>
+              <td>{{med.start_date}}</td>
+              <td style="width: 20%">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="openModal(removeModal, med)">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </td>
+            </tr>
+            </tbody>
+
+          </table>
 
         </div>
 
@@ -126,5 +185,67 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-default" (click)="dismiss()">Cancel</button>
     <button type="button" class="btn btn-danger" (click)="connect()">Connect</button>
+  </div>
+</ng-template>
+
+<ng-template #addAllergModaly>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Add New Allergy</h4>
+    <button type="button" class="close pull-right"
+            aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+
+
+        <label>Name</label>
+        <input class="form-control" [(ngModel)]="newAllergy.name" name="name">
+
+        <label>Start Date</label>
+        <input class="form-control" [(ngModel)]="newAllergy.onset_date" name="start_date">
+
+        <label>Status</label>
+        <input class="form-control" [(ngModel)]="newAllergy.status" name="status">
+
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="addAllergy()">Add</button>
+  </div>
+</ng-template>
+
+<ng-template #addMedication>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Add New Medication</h4>
+    <button type="button" class="close pull-right"
+            aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form>
+      <div class="form-group">
+
+
+        <label>Name</label>
+        <input class="form-control" [(ngModel)]="newMed.name" name="name">
+
+        <label>Description</label>
+        <input class="form-control" [(ngModel)]="newMed.description" name="description">
+
+        <label>Start Date</label>
+        <input class="form-control" [(ngModel)]="newMed.start_date" name="date">
+
+        <label>Status</label>
+        <input class="form-control" [(ngModel)]="newMed.status" name="status">
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="addMed()">Add</button>
   </div>
 </ng-template>

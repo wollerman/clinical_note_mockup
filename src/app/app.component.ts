@@ -1,7 +1,7 @@
 import {Component, TemplateRef} from '@angular/core';
 import {NoteSection} from './note-section/note-section.component';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
-import {Problem} from './problem-list/problem-list.component';
+import {Allergy, Medication} from './shared/models';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,7 @@ import {Problem} from './problem-list/problem-list.component';
 })
 export class AppComponent {
 
-  focused: NoteSection;
+  focused: NoteSection | Allergy | Medication;
   focusedList: any[];
 
   presentIllnessNotes: NoteSection[] = [];
@@ -19,8 +19,10 @@ export class AppComponent {
   socialHistoryNotes: NoteSection[] = [];
   reviewOfSystemNotes: NoteSection[] = [];
   physicalExamNotes: NoteSection[] = [];
-  allergyList: any[] = [];
-  medicationList: any[] = [];
+  allergyList: Allergy[] = [];
+  newAllergy: Allergy;
+  medicationList: Medication[] = [];
+  newMed: Medication;
 
   public modalRef: BsModalRef;
 
@@ -48,8 +50,28 @@ export class AppComponent {
     noteList.push(new NoteSection());
   }
 
-  public openModal(noteSection: NoteSection, noteList: any[], template: TemplateRef<any>) {
-    this.focused = noteSection;
+  openAddMed(template) {
+    this.newMed = new Medication();
+    this.modalRef = this.modalService.show(template);
+  }
+
+  addMed() {
+    this.medicationList.push(this.newMed);
+    this.modalRef.hide();
+  }
+
+  openAddAllergy(template) {
+    this.newAllergy = new Allergy();
+    this.modalRef = this.modalService.show(template);
+  }
+
+  addAllergy() {
+    this.allergyList.push(this.newAllergy);
+    this.modalRef.hide();
+  }
+
+  public openModal(focused: NoteSection | Allergy | Medication, noteList: any[], template: TemplateRef<any>) {
+    this.focused = focused;
     this.focusedList = noteList;
     this.modalRef = this.modalService.show(template);
   }
