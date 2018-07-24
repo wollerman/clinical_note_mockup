@@ -11,6 +11,7 @@ import {ModalModule, TooltipModule} from 'ngx-bootstrap';
 import {FormsModule} from '@angular/forms';
 
 import { AngularSplitModule } from 'angular-split';
+import { Observable } from 'rxjs';
 
 @NgModule({
   declarations: [

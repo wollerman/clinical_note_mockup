@@ -47,12 +47,7 @@ export class AppComponent {
   public openModal(noteSection: NoteSection, noteList: any[], template: TemplateRef<any>) {
     this.focused = noteSection;
     this.focusedList = noteList;
-    if (noteSection.text) {
-      this.modalRef = this.modalService.show(template);
-    } else {
-      this.remove();
-    }
-
+    this.modalRef = this.modalService.show(template);
   }
 
 

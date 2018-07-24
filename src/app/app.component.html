@@ -10,59 +10,68 @@
 <!--</li>-->
 <!--</ul>-->
 
-<div class="container-flex pt-1">
-  <div class="row">
-    <div class="col bg-light text-center" style="border-right: 1px solid #dee2e6">
-      <h2>Clinical Notes</h2>
-      <div class="box-shadow mx-auto text-left" style="width: 97%;">
-        <h4>History of Present Illness</h4>
-        <div *ngFor="let note of presentIllnessNotes">
-          <app-note-section [text]="note.text" [type]="note.type"
-                            (removeEmit)="openModal($event, presentIllnessNotes, removeModal)"></app-note-section>
+<div class="container-flex">
+  <div class="split-example" style="height: 900px">
+    <split direction="horizontal">
+      <split-area>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="#">Clinical Notes</a>
+        </nav>
+        <div class="box-shadow mx-auto text-left px-3">
+          <h4>History of Present Illness</h4>
+          <div *ngFor="let note of presentIllnessNotes">
+            <app-note-section [text]="note.text" [type]="note.type"
+                              (removeEmit)="openModal($event, presentIllnessNotes, removeModal)"></app-note-section>
+          </div>
+          <button class="btn btn-secondary mb-4" (click)="add(presentIllnessNotes)">Add</button>
+
+          <h4>Medical History</h4>
+          <div *ngFor="let note of medicalHistoryNotes">
+            <app-note-section [text]="note.text" [type]="note.type"
+                              (removeEmit)="openModal($event, medicalHistoryNotes, removeModal)"></app-note-section>
+          </div>
+          <button class="btn btn-secondary mb-4" (click)="add(medicalHistoryNotes)">Add</button>
+
+          <h4>Family History</h4>
+          <div *ngFor="let note of familyHistoryNotes">
+            <app-note-section [text]="note.text" [type]="note.type"
+                              (removeEmit)="openModal($event, familyHistoryNotes, removeModal)"></app-note-section>
+          </div>
+          <button class="btn btn-secondary mb-4" (click)="add(familyHistoryNotes)">Add</button>
+
+          <h4>Social History</h4>
+          <div *ngFor="let note of socialHistoryNotes">
+            <app-note-section [text]="note.text" [type]="note.type"
+                              (removeEmit)="openModal($event, socialHistoryNotes, removeModal)"></app-note-section>
+          </div>
+          <button class="btn btn-secondary mb-4" (click)="add(socialHistoryNotes)">Add</button>
+
         </div>
-        <button class="btn btn-secondary mb-4" (click)="add(presentIllnessNotes)">Add</button>
 
-        <h4>Medical History</h4>
-        <div *ngFor="let note of medicalHistoryNotes">
-          <app-note-section [text]="note.text" [type]="note.type"
-                            (removeEmit)="openModal($event, medicalHistoryNotes, removeModal)"></app-note-section>
+      </split-area>
+      <split-area>
+        <div class="box-shadow mx-auto">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Assessment</a>
+          </nav>
         </div>
-        <button class="btn btn-secondary mb-4" (click)="add(medicalHistoryNotes)">Add</button>
 
-        <h4>Family History</h4>
-        <div *ngFor="let note of familyHistoryNotes">
-          <app-note-section [text]="note.text" [type]="note.type"
-                            (removeEmit)="openModal($event, familyHistoryNotes, removeModal)"></app-note-section>
+        <div class="box-shadow mx-auto px-3" style="width: 97%;">
+          <app-problem-list class="mb-2"></app-problem-list>
+          <h4>Plan</h4>
+
+          <textarea class="form-control mb-3" rows="3"></textarea>
+          <app-lab-list class="mb-2"></app-lab-list>
+          <app-referral-list class="mb-2"></app-referral-list>
+
+
         </div>
-        <button class="btn btn-secondary mb-4" (click)="add(familyHistoryNotes)">Add</button>
-
-        <h4>Social History</h4>
-        <div *ngFor="let note of socialHistoryNotes">
-          <app-note-section [text]="note.text" [type]="note.type"
-                            (removeEmit)="openModal($event, socialHistoryNotes, removeModal)"></app-note-section>
-        </div>
-        <button class="btn btn-secondary mb-4" (click)="add(socialHistoryNotes)">Add</button>
-
-      </div>
-    </div>
-    <div class="col bg-light text-center">
-
-      <div class="box-shadow mx-auto" style="width: 97%; border-bottom: 1px solid #dee2e6">
-        <h2>Assessment</h2>
-        <app-problem-list class="mb-2"></app-problem-list>
-      </div>
-
-      <div class="box-shadow mx-auto" style="width: 97%;">
-        <h2>Plan</h2>
-
-        <textarea class="form-control mb-3" rows="3"></textarea>
-        <app-lab-list class="mb-2"></app-lab-list>
-        <app-referral-list class="mb-2"></app-referral-list>
 
 
-      </div>
-    </div>
+      </split-area>
+    </split>
   </div>
+
 </div>
 
 
