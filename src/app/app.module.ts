@@ -10,6 +10,8 @@ import { ReferralListComponent } from './referral-list/referral-list.component';
 import {ModalModule, TooltipModule} from 'ngx-bootstrap';
 import {FormsModule} from '@angular/forms';
 
+import { AngularSplitModule } from 'angular-split';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,6 +26,7 @@ import {FormsModule} from '@angular/forms';
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
     FormsModule,
+    AngularSplitModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
