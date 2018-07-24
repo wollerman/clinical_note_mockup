@@ -7,7 +7,7 @@
     <th scope="col">Status</th>
     <th scope="col">Diagnosed</th>
     <th scope="col">
-      <button type="button" class="btn btn-success" (click)="openModal(template)"
+      <button type="button" class="btn btn-success" (click)="openModal(addProblem)"
               tooltip="Add a new problem.">
         Add
       </button>
@@ -22,26 +22,57 @@
     <td>{{problem.diagnosed}}</td>
     <td>
       <button class="btn btn-dark">Details</button>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="openModal(removeProblem, problem)">
+        <span aria-hidden="true">&times;</span>
+      </button>
     </td>
   </tr>
   </tbody>
 
 </table>
 
-
-<ng-template #template>
+<ng-template #removeProblem>
   <div class="modal-header">
-    <h4 class="modal-title pull-left">Modal</h4>
+
+  </div>
+  <div class="modal-body">
+    Remove problem "{{focused.description}}"?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" (click)="dismiss()">Cancel</button>
+    <button type="button" class="btn btn-danger" (click)="remove()">Remove</button>
+  </div>
+</ng-template>
+
+
+<ng-template #addProblem>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Add New Problem</h4>
     <button type="button" class="close pull-right"
             aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    Are you sure want to delete this node?
-    <input [(ngModel)]="newProblem">
+    <form>
+      <div class="form-group">
+
+
+        <label>Problem Description</label>
+        <input class="form-control" [(ngModel)]="newProblemDescription" name="description">
+
+        <label>ICD 10 Code</label>
+        <input class="form-control" [(ngModel)]="newProblemicd10" name="icd10">
+
+        <label>Problem Status</label>
+        <input class="form-control" [(ngModel)]="newProblemStatus" name="status">
+
+        <label>Problem Diagnosed Date</label>
+        <input class="form-control" [(ngModel)]="newProblemDiagnosed" name="diagnosed">
+      </div>
+    </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="onConfirm()">Yes</button>
+    <button type="button" class="btn btn-secondary" (click)="onConfirm()">Add</button>
   </div>
 </ng-template>
