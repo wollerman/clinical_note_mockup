@@ -1,5 +1,6 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
+import {NoteSection} from '../note-section/note-section.component';
 
 @Component({
   selector: 'app-problem-list',
@@ -8,11 +9,13 @@ import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 })
 export class ProblemListComponent implements OnInit {
 
+  problemStatusOptions = Object.keys(ProblemStatus);
+
   problemList: Problem[];
   public modalRef: BsModalRef;
   public newProblemDescription: string;
   public newProblemicd10: string;
-  public newProblemStatus: string;
+  public newProblemStatus: string = ProblemStatus.ACTIVE;
   public newProblemDiagnosed: string;
 
   public focused: Problem;
@@ -22,7 +25,7 @@ export class ProblemListComponent implements OnInit {
       new Problem(
         'Achalasia of esophagus (disorder)',
         'K22.0',
-        'active',
+        ProblemStatus.ACTIVE,
         '6/19/18')
     ];
 
@@ -69,8 +72,9 @@ export class Problem {
 
   description: string;
   icd10: string;
-  status: string;
+  status: ProblemStatus;
   diagnosed: string;
+  source: NoteSection;
 
   constructor(description?, icd10?, status?, diagnosed?) {
     this.description = description;
@@ -79,4 +83,10 @@ export class Problem {
     this.diagnosed = diagnosed;
   }
 
+}
+
+export enum ProblemStatus {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+  RESOLVED = 'RESOLVED'
 }

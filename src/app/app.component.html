@@ -16,10 +16,29 @@
     <div class="col bg-light text-center" style="border-right: 1px solid #dee2e6">
       <h2>Clinical Notes</h2>
       <div class="box-shadow mx-auto text-left" style="width: 97%;">
-        <h4>Medical History</h4>
-        <div *ngFor="let note of notes">
-          <app-note-section [text]="'test'"></app-note-section>
+        <h4>History of Present Illness</h4>
+        <div *ngFor="let note of presentIllnessNotes">
+          <app-note-section [text]="note.text" [type]="note.type" (removeEmit)="remove($event, presentIllnessNotes)"></app-note-section>
         </div>
+        <button class="btn btn-secondary mb-4" (click)="add(presentIllnessNotes)">Add</button>
+
+        <h4>Medical History</h4>
+        <div *ngFor="let note of medicalHistoryNotes">
+          <app-note-section [text]="note.text" [type]="note.type" (removeEmit)="remove($event, medicalHistoryNotes)"></app-note-section>
+        </div>
+        <button class="btn btn-secondary mb-4" (click)="add(medicalHistoryNotes)">Add</button>
+
+        <h4>Family History</h4>
+        <div *ngFor="let note of familyHistoryNotes">
+          <app-note-section [text]="note.text" [type]="note.type" (removeEmit)="remove($event, familyHistoryNotes)"></app-note-section>
+        </div>
+        <button class="btn btn-secondary mb-4" (click)="add(familyHistoryNotes)">Add</button>
+
+        <h4>Social History</h4>
+        <div *ngFor="let note of socialHistoryNotes">
+          <app-note-section [text]="note.text" [type]="note.type" (removeEmit)="remove($event, socialHistoryNotes)"></app-note-section>
+        </div>
+        <button class="btn btn-secondary mb-4" (click)="add(socialHistoryNotes)">Add</button>
 
       </div>
     </div>

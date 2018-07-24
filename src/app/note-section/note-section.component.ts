@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-note-section',
@@ -13,9 +13,33 @@ export class NoteSectionComponent implements OnInit {
   @Input()
   type: string;
 
-  constructor() { }
+  @Output()
+  removeEmit = new EventEmitter<NoteSection>();
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
+  remove() {
+    this.removeEmit.emit(this);
+  }
+
+}
+
+export class NoteSection {
+
+  type: string;
+  text: string;
+
+  constructor(text?: string, type?: string) {
+    this.text = text;
+    this.type = type;
+  }
+
+}
+
+export enum NoteType {
+  OBSERVATION = 'OBSERVATION'
 }

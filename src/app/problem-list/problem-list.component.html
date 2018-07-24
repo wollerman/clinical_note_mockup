@@ -21,7 +21,7 @@
     <td>{{problem.status}}</td>
     <td>{{problem.diagnosed}}</td>
     <td>
-      <button class="btn btn-dark">Details</button>
+      <button class="btn btn-secondary">View Source</button>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="openModal(removeProblem, problem)">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -65,7 +65,9 @@
         <input class="form-control" [(ngModel)]="newProblemicd10" name="icd10">
 
         <label>Problem Status</label>
-        <input class="form-control" [(ngModel)]="newProblemStatus" name="status">
+        <select class="form-control" [(ngModel)]="newProblemStatus" name="status">
+          <option *ngFor="let s of problemStatusOptions">{{s}}</option>
+        </select>
 
         <label>Problem Diagnosed Date</label>
         <input class="form-control" [(ngModel)]="newProblemDiagnosed" name="diagnosed">
