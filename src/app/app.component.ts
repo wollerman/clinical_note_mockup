@@ -13,10 +13,14 @@ export class AppComponent {
   focused: NoteSection;
   focusedList: any[];
 
-  presentIllnessNotes: NoteSection[];
-  medicalHistoryNotes: NoteSection[];
-  familyHistoryNotes: NoteSection[];
-  socialHistoryNotes: NoteSection[];
+  presentIllnessNotes: NoteSection[] = [];
+  medicalHistoryNotes: NoteSection[] = [];
+  familyHistoryNotes: NoteSection[] = [];
+  socialHistoryNotes: NoteSection[] = [];
+  reviewOfSystemNotes: NoteSection[] = [];
+  physicalExamNotes: NoteSection[] = [];
+  allergyList: any[] = [];
+  medicationList: any[] = [];
 
   public modalRef: BsModalRef;
 

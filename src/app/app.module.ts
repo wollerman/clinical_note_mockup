@@ -11,7 +11,7 @@ import {ModalModule, TooltipModule} from 'ngx-bootstrap';
 import {FormsModule} from '@angular/forms';
 
 import { AngularSplitModule } from 'angular-split';
-import { Observable } from 'rxjs';
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 
 @NgModule({
   declarations: [
@@ -28,6 +28,7 @@ import { Observable } from 'rxjs';
     ModalModule.forRoot(),
     FormsModule,
     AngularSplitModule,
+    ScrollToModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

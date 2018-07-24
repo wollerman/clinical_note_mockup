@@ -11,47 +11,77 @@
 <!--</ul>-->
 
 <div class="container-flex">
-  <div class="split-example" style="height: 900px">
+  <div class="split-example" style="height: 860px">
     <split direction="horizontal">
       <split-area>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
           <a class="navbar-brand" href="#">Clinical Notes</a>
+          <div class="btn-group" role="group" aria-label="Basic example">
+
+            <button class="btn btn-secondary" [ngx-scroll-to]="'present-illness'">Present Illness</button>
+            <button class="btn btn-secondary" [ngx-scroll-to]="'medical-history'">MH</button>
+            <button class="btn btn-secondary" [ngx-scroll-to]="'family-history'">FH</button>
+            <button class="btn btn-secondary" [ngx-scroll-to]="'social-history'">SocH</button>
+            <button class="btn btn-secondary" [ngx-scroll-to]="'review-of-system'">RoS</button>
+            <button class="btn btn-secondary" [ngx-scroll-to]="'physical-exam'">PE</button>
+            <button class="btn btn-secondary" [ngx-scroll-to]="'allergies'">Allergies</button>
+            <button class="btn btn-secondary" [ngx-scroll-to]="'medications'">Meds</button>
+          </div>
         </nav>
+
         <div class="box-shadow mx-auto text-left px-3">
-          <h4>History of Present Illness</h4>
+          <h4 id="present-illness">History of Present Illness</h4>
           <div *ngFor="let note of presentIllnessNotes">
             <app-note-section [text]="note.text" [type]="note.type"
                               (removeEmit)="openModal($event, presentIllnessNotes, removeModal)"></app-note-section>
           </div>
           <button class="btn btn-secondary mb-4" (click)="add(presentIllnessNotes)">Add</button>
 
-          <h4>Medical History</h4>
+          <h4 id="medical-history">Medical History</h4>
           <div *ngFor="let note of medicalHistoryNotes">
             <app-note-section [text]="note.text" [type]="note.type"
                               (removeEmit)="openModal($event, medicalHistoryNotes, removeModal)"></app-note-section>
           </div>
           <button class="btn btn-secondary mb-4" (click)="add(medicalHistoryNotes)">Add</button>
 
-          <h4>Family History</h4>
+          <h4 id="family-history">Family History</h4>
           <div *ngFor="let note of familyHistoryNotes">
             <app-note-section [text]="note.text" [type]="note.type"
                               (removeEmit)="openModal($event, familyHistoryNotes, removeModal)"></app-note-section>
           </div>
           <button class="btn btn-secondary mb-4" (click)="add(familyHistoryNotes)">Add</button>
 
-          <h4>Social History</h4>
+          <h4 id="social-history">Social History</h4>
           <div *ngFor="let note of socialHistoryNotes">
             <app-note-section [text]="note.text" [type]="note.type"
                               (removeEmit)="openModal($event, socialHistoryNotes, removeModal)"></app-note-section>
           </div>
           <button class="btn btn-secondary mb-4" (click)="add(socialHistoryNotes)">Add</button>
 
+          <h4 id="review-of-system">Review of System</h4>
+          <div *ngFor="let note of reviewOfSystemNotes">
+            <app-note-section [text]="note.text" [type]="note.type"
+                              (removeEmit)="openModal($event, reviewOfSystemNotes, removeModal)"></app-note-section>
+          </div>
+          <button class="btn btn-secondary mb-4" (click)="add(reviewOfSystemNotes)">Add</button>
+
+          <h4 id="physical-exam">Physical Exam</h4>
+          <div *ngFor="let note of physicalExamNotes">
+            <app-note-section [text]="note.text" [type]="note.type"
+                              (removeEmit)="openModal($event, physicalExamNotes, removeModal)"></app-note-section>
+          </div>
+          <button class="btn btn-secondary mb-4" (click)="add(physicalExamNotes)">Add</button>
+
+
+          <h4 id="allergies">Allergies</h4>
+          <h4 id="medications">Medications</h4>
+
         </div>
 
       </split-area>
       <split-area>
         <div class="box-shadow mx-auto">
-          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
             <a class="navbar-brand" href="#">Assessment</a>
           </nav>
         </div>
