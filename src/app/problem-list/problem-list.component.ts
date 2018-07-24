@@ -15,7 +15,7 @@ export class ProblemListComponent implements OnInit {
   public modalRef: BsModalRef;
   public newProblemDescription: string;
   public newProblemicd10: string;
-  public newProblemStatus: string = ProblemStatus.ACTIVE;
+  public newProblemStatus: string;
   public newProblemDiagnosed: string;
 
   public focused: Problem;
@@ -26,12 +26,14 @@ export class ProblemListComponent implements OnInit {
         'Achalasia of esophagus (disorder)',
         'K22.0',
         ProblemStatus.ACTIVE,
-        '6/19/18')
+        '2018-19-06')
     ];
 
   }
 
   ngOnInit() {
+    this.newProblemStatus = ProblemStatus.ACTIVE;
+    this.newProblemDiagnosed = new Date().toJSON().slice(0, 10);
   }
 
   public openModal(template: TemplateRef<any>, problem?: Problem) {

@@ -3,7 +3,7 @@
   <thead>
   <tr>
     <th scope="col">Tests</th>
-    <th scope="col">Date</th>
+    <th scope="col">Last Update</th>
     <th scope="col">Status</th>
     <th scope="col">
       <button type="button" class="btn btn-sm btn-success" (click)="openModal(addModal)"
@@ -15,7 +15,7 @@
   </thead>
   <tbody>
   <tr *ngFor="let lab of labList">
-    <th scope="row">{{lab.test}}</th>
+    <th scope="row" style="width: 25%">{{lab.test}}</th>
     <td>{{lab.date}}</td>
     <td>{{lab.status}}</td>
     <td style="width: 20%">

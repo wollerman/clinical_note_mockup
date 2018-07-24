@@ -15,7 +15,7 @@
   </thead>
   <tbody>
   <tr *ngFor="let referral of referralList">
-    <th scope="row">{{referral.name}}</th>
+    <th scope="row" style="width: 25%">{{referral.name}}</th>
     <td>{{referral.type}}</td>
     <td>{{referral.status}}</td>
     <td style="width: 20%">
@@ -34,7 +34,7 @@
 
   </div>
   <div class="modal-body">
-    Remove referral "{{focused.test}}"?
+    Remove referral "{{focused.name}}"?
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" (click)="dismiss()">Cancel</button>
@@ -57,10 +57,10 @@
 
 
         <label>Referral Name</label>
-        <input class="form-control" [(ngModel)]="newReferralName" name="test">
+        <input class="form-control" [(ngModel)]="newReferralName" name="name">
 
-        <label>Referral Status</label>
-        <input class="form-control" [(ngModel)]="newReferralStatus" name="status">
+        <label>Referral Date</label>
+        <input class="form-control" [(ngModel)]="newReferralDate" name="date">
 
         <label>Referral Type</label>
         <select class="form-control" [(ngModel)]="newReferralType" name="type">

@@ -1,5 +1,4 @@
 import {Component, OnInit, TemplateRef} from '@angular/core';
-import {Problem} from '../problem-list/problem-list.component';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 
 @Component({
@@ -10,15 +9,17 @@ import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
 export class ReferralListComponent implements OnInit {
 
   referralTypeOptions = [
-    'PCP'
+    'Cardiologist',
+    'Radiologist',
+    'Ophthalmologist'
   ];
 
   referralList: Referral[];
   public modalRef: BsModalRef;
   public newReferralName: string;
   public newReferralType: string;
-  public newReferralStatus: string;
   public newReferralInstructions: string;
+  public newReferralDate: string;
 
   public focused: Referral;
 
@@ -29,6 +30,7 @@ export class ReferralListComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.newReferralDate = new Date().toJSON().slice(0, 10);
   }
 
   public openModal(template: TemplateRef<any>, referral?: Referral) {
@@ -43,7 +45,7 @@ export class ReferralListComponent implements OnInit {
         new Referral(
           this.newReferralName,
           this.newReferralType,
-          this.newReferralStatus,
+          'ORDERED',
           this.newReferralInstructions
         )
       );
@@ -71,12 +73,14 @@ export class Referral {
   type: string;
   status: string;
   instructions: string;
+  date: string;
 
-  constructor(name: string, type?: string, status?: string, instructions?: string) {
+  constructor(name: string, type?: string, status?: string, instructions?: string, date?: string) {
     this.name = name;
     this.type = type ? type : '';
     this.status = status ? status : '';
     this.instructions = instructions;
+    this.date = date;
   }
 
 }

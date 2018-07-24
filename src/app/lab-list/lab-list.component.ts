@@ -32,7 +32,7 @@ export class LabListComponent implements OnInit {
     this.labList = [
       new Lab(
         'Hemoccult sp4 Stl Ql:',
-        '6/13/10',
+        '2010-10-13',
         'Results Reviewed with Patient'
       )
     ];
