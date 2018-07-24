@@ -24,6 +24,9 @@ export class AppComponent {
   medicationList: Medication[] = [];
   newMed: Medication;
 
+  assessmentSize = 50;
+  checklistSize = 0;
+
   public modalRef: BsModalRef;
 
   constructor(private modalService: BsModalService) {
@@ -90,6 +93,16 @@ export class AppComponent {
 
   connect() {
 
+  }
+
+  toggleChecklist() {
+    if (this.checklistSize === 15) {
+      this.checklistSize = 0;
+      this.assessmentSize = 50;
+    } else {
+      this.checklistSize = 15;
+      this.assessmentSize = 35;
+    }
   }
 
 

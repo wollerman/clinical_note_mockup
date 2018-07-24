@@ -1,19 +1,7 @@
-<!--<ul class="nav nav-tabs nav-fill">-->
-<!--<li class="nav-item">-->
-<!--<a class="nav-link active" href="#">New Appointment Clinical Notes</a>-->
-<!--</li>-->
-<!--<li class="nav-item">-->
-<!--<a class="nav-link" href="#">Review</a>-->
-<!--</li>-->
-<!--<li class="nav-item">-->
-<!--<a class="nav-link" href="#">Sign</a>-->
-<!--</li>-->
-<!--</ul>-->
-
 <div class="container-flex">
   <div class="split-example" style="height: 860px">
-    <split direction="horizontal">
-      <split-area>
+    <split direction="horizontal" [useTransition]="true">
+      <split-area [size]="50">
         <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
           <a class="navbar-brand" href="#">Clinical Notes</a>
           <div class="btn-group" role="group" aria-label="Basic example">
@@ -94,7 +82,8 @@
               <td>{{allergy.onset_date}}</td>
               <td>{{allergy.status}}</td>
               <td style="width: 20%">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="openModal(removeModal, allergy)">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                        (click)="openModal(removeModal, allergy)">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </td>
@@ -126,7 +115,8 @@
               <td>{{med.status}}</td>
               <td>{{med.start_date}}</td>
               <td style="width: 20%">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="openModal(removeModal, med)">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                        (click)="openModal(removeModal, med)">
                   <span aria-hidden="true">&times;</span>
                 </button>
               </td>
@@ -138,10 +128,16 @@
         </div>
 
       </split-area>
-      <split-area>
+      <split-area [size]="assessmentSize">
         <div class="box-shadow mx-auto">
           <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
             <a class="navbar-brand" href="#">Assessment</a>
+            <div class="align-content-end">
+              <button class="btn align-content-end" (click)="toggleChecklist()">
+                checklist
+              </button>
+            </div>
+
           </nav>
         </div>
 
@@ -158,6 +154,9 @@
 
 
       </split-area>
+      <split-area [size]="checklistSize">
+
+      </split-area>
     </split>
   </div>
 
@@ -168,7 +167,7 @@
   <div class="modal-header">
   </div>
   <div class="modal-body">
-    Remove "{{focused.text}}" note?
+    Remove "{{focused}}"?
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" (click)="dismiss()">Cancel</button>
