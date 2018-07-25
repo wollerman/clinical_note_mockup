@@ -26,8 +26,8 @@ export class AppComponent {
   checklist: ChecklistItem[] = [];
   showAll = true;
 
-  assessmentSize = 50;
-  checklistSize = 0;
+  assessmentSize = 40;
+  checklistSize = 15;
   hidden = {
     hp: false,
     mh: false,
@@ -122,10 +122,10 @@ export class AppComponent {
   toggleChecklist() {
     if (this.checklistSize === 15) {
       this.checklistSize = 0;
-      this.assessmentSize = 50;
+      this.assessmentSize = 55;
     } else {
       this.checklistSize = 15;
-      this.assessmentSize = 35;
+      this.assessmentSize = 40;
     }
   }
 
