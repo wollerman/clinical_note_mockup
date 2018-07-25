@@ -25,7 +25,7 @@ export class ReferralListComponent implements OnInit {
 
   constructor(private modalService: BsModalService) {
     this.referralList = [
-      new Referral('Dr. Jones', 'Radiologist', 'pending')
+      new Referral('Dr. Jones', 'Radiologist', 'pending', '', '2018-07-19')
     ];
   }
 

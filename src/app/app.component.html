@@ -5,7 +5,7 @@
       <split-area [size]="45">
         <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="border-bottom: 1px solid black">
           <a class="navbar-brand" href="#">Clinical Note</a>
-          <div class="btn-group" role="group" aria-label="Jump to Note Section">
+          <div class="btn-group ml-auto" role="group" aria-label="Jump to Note Section">
             <button class="btn btn-secondary" [ngx-scroll-to]="'present-illness'">HPI</button>
             <button class="btn btn-secondary" [ngx-scroll-to]="'medical-history'">MH</button>
             <button class="btn btn-secondary" [ngx-scroll-to]="'family-history'">FH</button>
@@ -23,7 +23,7 @@
           </h4>
           <div [hidden]="hidden.hp">
             <div *ngFor="let note of presentIllnessNotes">
-              <app-note-section [text]="note.text" [type]="note.type"
+              <app-note-section [noteSection]="note"
                                 (removeEmit)="openModal($event, presentIllnessNotes, removeModal)"></app-note-section>
             </div>
             <button class="btn btn-outline-success ml-3 mb-3" (click)="add(presentIllnessNotes)">Add</button>
@@ -34,7 +34,7 @@
           </h4>
           <div [hidden]="hidden.mh">
             <div *ngFor="let note of medicalHistoryNotes">
-              <app-note-section [text]="note.text" [type]="note.type"
+              <app-note-section [noteSection]="note"
                                 (removeEmit)="openModal($event, medicalHistoryNotes, removeModal)"></app-note-section>
             </div>
             <button class="btn btn-outline-success ml-3 mb-3" (click)="add(medicalHistoryNotes)">Add</button>
@@ -45,7 +45,7 @@
           </h4>
           <div [hidden]="hidden.fh">
             <div *ngFor="let note of familyHistoryNotes">
-              <app-note-section [text]="note.text" [type]="note.type"
+              <app-note-section [noteSection]="note"
                                 (removeEmit)="openModal($event, familyHistoryNotes, removeModal)"></app-note-section>
             </div>
             <button class="btn btn-outline-success ml-3 mb-3" (click)="add(familyHistoryNotes)">Add</button>
@@ -56,7 +56,7 @@
           </h4>
           <div [hidden]="hidden.sh">
             <div *ngFor="let note of socialHistoryNotes">
-              <app-note-section [text]="note.text" [type]="note.type"
+              <app-note-section [noteSection]="note"
                                 (removeEmit)="openModal($event, socialHistoryNotes, removeModal)"></app-note-section>
             </div>
             <button class="btn btn-outline-success ml-3 mb-3" (click)="add(socialHistoryNotes)">Add</button>
@@ -67,7 +67,7 @@
           </h4>
           <div [hidden]="hidden.ros">
             <div *ngFor="let note of reviewOfSystemNotes">
-              <app-note-section [text]="note.text" [type]="note.type"
+              <app-note-section [noteSection]="note"
                                 (removeEmit)="openModal($event, reviewOfSystemNotes, removeModal)"></app-note-section>
             </div>
             <button class="btn btn-outline-success ml-3 mb-3" (click)="add(reviewOfSystemNotes)">Add</button>
@@ -78,7 +78,7 @@
           </h4>
           <div [hidden]="hidden.pe">
             <div *ngFor="let note of physicalExamNotes">
-              <app-note-section [text]="note.text" [type]="note.type"
+              <app-note-section [noteSection]="note"
                                 (removeEmit)="openModal($event, physicalExamNotes, removeModal)"></app-note-section>
             </div>
             <button class="btn btn-outline-success ml-3 mb-3" (click)="add(physicalExamNotes)">Add</button>
@@ -97,7 +97,7 @@
                 <th scope="col" style="width: 20%">Status</th>
                 <th scope="col" style="width: 20%">Onset Date</th>
                 <th scope="col" style="width: 10%">
-                  <button type="button" class="btn btn-sm btn-outline-success" (click)="openAddAllergy(addAllergModaly)"
+                  <button type="button" class="btn btn-sm btn-outline-success" (click)="openAddAllergy(addAllergModal)"
                           tooltip="Add a new lab.">
                     Add
                   </button>
@@ -173,10 +173,10 @@
       <split-area [size]="assessmentSize">
         <div class="box-shadow mx-auto">
           <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="border-bottom: 1px solid black">
-            <a class="navbar-brand" href="#">Assessment</a>
+            <a class="navbar-brand" href="#">Assessment (John Doe 01/01/1950)</a>
             <div class="ml-auto">
-              <button class="btn btn-outline-secondary" (click)="toggleChecklist()">
-                <i class="fa fa-bars" aria-hidden="true"></i>
+              <button class="btn btn-success" (click)="toggleChecklist()" [hidden]="checklistSize > 0">
+                View Quality Checklist
               </button>
             </div>
           </nav>
@@ -224,7 +224,7 @@
   <div class="modal-header">
   </div>
   <div class="modal-body">
-    Remove "{{focused}}"?
+    Remove "{{focused.name}}"?
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" (click)="dismiss()">Cancel</button>
@@ -232,7 +232,7 @@
   </div>
 </ng-template>
 
-<ng-template #addAllergModaly>
+<ng-template #addAllergModal>
   <div class="modal-header">
     <h4 class="modal-title pull-left">Add New Allergy</h4>
     <button type="button" class="close pull-right"

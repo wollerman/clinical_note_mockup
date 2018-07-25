@@ -44,19 +44,19 @@ export class AppComponent {
   constructor(private modalService: BsModalService) {
 
     this.presentIllnessNotes = [
-      new NoteSection('Patient reported pain in right hand.')
+      new NoteSection('HPI', 'Patient reported pain in right hand.')
     ];
 
     this.medicalHistoryNotes = [
-      new NoteSection('Patient reported difficulty swallowing due to Achalasia.', 'Medical History'),
+      new NoteSection('Medical History', 'Patient reported difficulty swallowing due to Achalasia.'),
     ];
 
     this.familyHistoryNotes = [
-      new NoteSection('test family history note. patient shows signs of x.')
+      new NoteSection('Family History')
     ];
 
     this.socialHistoryNotes = [
-      new NoteSection('social history note 1')
+      new NoteSection('SoH', 'Patient does not smoke. Patient drinks alcohol 3 x week.')
     ];
 
     this.checklist = [
@@ -67,17 +67,17 @@ export class AppComponent {
     ];
 
     this.reviewOfSystemNotes = [
-      new NoteSection('')
+      new NoteSection('RoS')
     ];
 
     this.physicalExamNotes = [
-      new NoteSection()
+      new NoteSection('PE')
     ];
 
   }
 
   add(noteList: any[]) {
-    noteList.push(new NoteSection());
+    noteList.push(new NoteSection('new'));
   }
 
   openAddMed(template) {

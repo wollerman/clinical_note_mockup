@@ -8,10 +8,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class NoteSectionComponent implements OnInit {
 
   @Input()
-  text: string;
-
-  @Input()
-  type: string;
+  noteSection: NoteSection;
 
   @Output()
   removeEmit = new EventEmitter<NoteSection>();
@@ -23,7 +20,7 @@ export class NoteSectionComponent implements OnInit {
   }
 
   remove() {
-    this.removeEmit.emit(this);
+    this.removeEmit.emit(this.noteSection);
   }
 
 }
@@ -33,7 +30,15 @@ export class NoteSection {
   type: string;
   text: string;
 
-  constructor(text?: string, type?: string) {
+  get name() {
+    if (this.text) {
+      return this.text.slice(0, 30) + '...';
+    } else {
+      return this.type + ' item';
+    }
+  }
+
+  constructor(type: string, text?: string) {
     this.text = text;
     this.type = type;
   }
