@@ -28,6 +28,16 @@ export class AppComponent {
 
   assessmentSize = 50;
   checklistSize = 0;
+  hidden = {
+    hp: false,
+    mh: false,
+    fh: false,
+    sh: false,
+    ros: false,
+    pe: false,
+    aller: false,
+    meds: false
+  };
 
   public modalRef: BsModalRef;
 
@@ -109,6 +119,10 @@ export class AppComponent {
       this.checklistSize = 15;
       this.assessmentSize = 35;
     }
+  }
+
+  toggleSection(section) {
+    this.hidden[section] = !this.hidden[section];
   }
 
 

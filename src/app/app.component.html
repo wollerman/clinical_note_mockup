@@ -4,9 +4,8 @@
     <split direction="horizontal" [useTransition]="true">
       <split-area [size]="50">
         <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="border-bottom: 1px solid black">
-          <a class="navbar-brand" href="#">Clinical Notes</a>
-          <div class="btn-group" role="group" aria-label="Basic example">
-
+          <a class="navbar-brand" href="#">Clinical Note</a>
+          <div class="btn-group" role="group" aria-label="Jump to Note Section">
             <button class="btn btn-secondary" [ngx-scroll-to]="'present-illness'">Present Illness</button>
             <button class="btn btn-secondary" [ngx-scroll-to]="'medical-history'">MH</button>
             <button class="btn btn-secondary" [ngx-scroll-to]="'family-history'">FH</button>
@@ -19,120 +18,154 @@
         </nav>
 
         <div class="box-shadow mx-auto text-left px-3 mb-4 pb-4 pt-2">
-          <h4 id="present-illness">History of Present Illness</h4>
-          <div *ngFor="let note of presentIllnessNotes">
-            <app-note-section [text]="note.text" [type]="note.type"
-                              (removeEmit)="openModal($event, presentIllnessNotes, removeModal)"></app-note-section>
+          <h4 id="present-illness" class="hover" (click)="toggleSection('hp')">
+            History of Present Illness <i class="fa {{hidden.hp ? 'fa-arrow-right' : 'fa-arrow-down'}}"></i>
+          </h4>
+          <div [hidden]="hidden.hp">
+            <div *ngFor="let note of presentIllnessNotes">
+              <app-note-section [text]="note.text" [type]="note.type"
+                                (removeEmit)="openModal($event, presentIllnessNotes, removeModal)"></app-note-section>
+            </div>
+            <button class="btn btn-outline-success ml-3 mb-3" (click)="add(presentIllnessNotes)">Add</button>
           </div>
-          <button class="btn btn-outline-success ml-3 mb-3" (click)="add(presentIllnessNotes)">Add</button>
 
-          <h4 id="medical-history">Medical History</h4>
-          <div *ngFor="let note of medicalHistoryNotes">
-            <app-note-section [text]="note.text" [type]="note.type"
-                              (removeEmit)="openModal($event, medicalHistoryNotes, removeModal)"></app-note-section>
+          <h4 id="medical-history" class="hover" (click)="toggleSection('mh')">
+            Medical History <i class="fa {{hidden.mh ? 'fa-arrow-right' : 'fa-arrow-down'}}"></i>
+          </h4>
+          <div [hidden]="hidden.mh">
+            <div *ngFor="let note of medicalHistoryNotes">
+              <app-note-section [text]="note.text" [type]="note.type"
+                                (removeEmit)="openModal($event, medicalHistoryNotes, removeModal)"></app-note-section>
+            </div>
+            <button class="btn btn-outline-success ml-3 mb-3" (click)="add(medicalHistoryNotes)">Add</button>
           </div>
-          <button class="btn btn-outline-success ml-3 mb-3" (click)="add(medicalHistoryNotes)">Add</button>
 
-          <h4 id="family-history">Family History</h4>
-          <div *ngFor="let note of familyHistoryNotes">
-            <app-note-section [text]="note.text" [type]="note.type"
-                              (removeEmit)="openModal($event, familyHistoryNotes, removeModal)"></app-note-section>
+          <h4 id="family-history" class="hover" (click)="toggleSection('fh')">
+            Family History <i class="fa {{hidden.fh ? 'fa-arrow-right' : 'fa-arrow-down'}}"></i>
+          </h4>
+          <div [hidden]="hidden.fh">
+            <div *ngFor="let note of familyHistoryNotes">
+              <app-note-section [text]="note.text" [type]="note.type"
+                                (removeEmit)="openModal($event, familyHistoryNotes, removeModal)"></app-note-section>
+            </div>
+            <button class="btn btn-outline-success ml-3 mb-3" (click)="add(familyHistoryNotes)">Add</button>
           </div>
-          <button class="btn btn-outline-success ml-3 mb-3" (click)="add(familyHistoryNotes)">Add</button>
 
-          <h4 id="social-history">Social History</h4>
-          <div *ngFor="let note of socialHistoryNotes">
-            <app-note-section [text]="note.text" [type]="note.type"
-                              (removeEmit)="openModal($event, socialHistoryNotes, removeModal)"></app-note-section>
+          <h4 id="social-history" class="hover" (click)="toggleSection('sh')">
+            Social History <i class="fa {{hidden.sh ? 'fa-arrow-right' : 'fa-arrow-down'}}"></i>
+          </h4>
+          <div [hidden]="hidden.sh">
+            <div *ngFor="let note of socialHistoryNotes">
+              <app-note-section [text]="note.text" [type]="note.type"
+                                (removeEmit)="openModal($event, socialHistoryNotes, removeModal)"></app-note-section>
+            </div>
+            <button class="btn btn-outline-success ml-3 mb-3" (click)="add(socialHistoryNotes)">Add</button>
           </div>
-          <button class="btn btn-outline-success ml-3 mb-3" (click)="add(socialHistoryNotes)">Add</button>
 
-          <h4 id="review-of-system">Review of System</h4>
-          <div *ngFor="let note of reviewOfSystemNotes">
-            <app-note-section [text]="note.text" [type]="note.type"
-                              (removeEmit)="openModal($event, reviewOfSystemNotes, removeModal)"></app-note-section>
+          <h4 id="review-of-system" class="hover" (click)="toggleSection('ros')">
+            Review of System <i class="fa {{hidden.ros ? 'fa-arrow-right' : 'fa-arrow-down'}}"></i>
+          </h4>
+          <div [hidden]="hidden.ros">
+            <div *ngFor="let note of reviewOfSystemNotes">
+              <app-note-section [text]="note.text" [type]="note.type"
+                                (removeEmit)="openModal($event, reviewOfSystemNotes, removeModal)"></app-note-section>
+            </div>
+            <button class="btn btn-outline-success ml-3 mb-3" (click)="add(reviewOfSystemNotes)">Add</button>
           </div>
-          <button class="btn btn-outline-success ml-3 mb-3" (click)="add(reviewOfSystemNotes)">Add</button>
 
-          <h4 id="physical-exam">Physical Exam</h4>
-          <div *ngFor="let note of physicalExamNotes">
-            <app-note-section [text]="note.text" [type]="note.type"
-                              (removeEmit)="openModal($event, physicalExamNotes, removeModal)"></app-note-section>
+          <h4 id="physical-exam" class="hover" (click)="toggleSection('pe')">
+            Physical Exam <i class="fa {{hidden.pe ? 'fa-arrow-right' : 'fa-arrow-down'}}"></i>
+          </h4>
+          <div [hidden]="hidden.pe">
+            <div *ngFor="let note of physicalExamNotes">
+              <app-note-section [text]="note.text" [type]="note.type"
+                                (removeEmit)="openModal($event, physicalExamNotes, removeModal)"></app-note-section>
+            </div>
+            <button class="btn btn-outline-success ml-3 mb-3" (click)="add(physicalExamNotes)">Add</button>
           </div>
-          <button class="btn btn-outline-success ml-3 mb-3" (click)="add(physicalExamNotes)">Add</button>
 
 
-          <h4 id="allergies">Allergies</h4>
-          <table class="table table-sm table-hover">
-            <thead class="thead-light">
-            <tr>
-              <th scope="col" style="width: 25%">Name</th>
-              <th scope="col" style="width: 25%">Loinc Code</th>
-              <th scope="col" style="width: 20%">Status</th>
-              <th scope="col" style="width: 20%">Onset Date</th>
-              <th scope="col" style="width: 10%">
-                <button type="button" class="btn btn-sm btn-success" (click)="openAddAllergy(addAllergModaly)"
-                        tooltip="Add a new lab.">
-                  Add
-                </button>
-              </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let allergy of allergyList">
-              <th scope="row" style="width: 25%">{{allergy.name}}</th>
-              <td style="width: 25%">{{allergy.loinc}}</td>
-              <td style="width: 20%">{{allergy.status}}</td>
-              <td style="width: 20%">{{allergy.onset_date}}</td>
-              <td style="width: 10%">
-                <div class="btn-group" role="group" aria-label="Lab Modify Buttons">
-                  <button class="btn btn-sm btn-outline-primary" tooltip="edit">
-                    <i class="fa fa-pencil" aria-hidden="true"></i>
+          <h4 id="allergies" class="hover" (click)="toggleSection('aller')">
+            Allergies <i class="fa {{hidden.aller ? 'fa-arrow-right' : 'fa-arrow-down'}}"></i>
+          </h4>
+          <div [hidden]="hidden.aller">
+            <table class="table table-sm table-hover">
+              <thead class="thead-light">
+              <tr>
+                <th scope="col" style="width: 25%">Name</th>
+                <th scope="col" style="width: 25%">Loinc Code</th>
+                <th scope="col" style="width: 20%">Status</th>
+                <th scope="col" style="width: 20%">Onset Date</th>
+                <th scope="col" style="width: 10%">
+                  <button type="button" class="btn btn-sm btn-success" (click)="openAddAllergy(addAllergModaly)"
+                          tooltip="Add a new lab.">
+                    Add
                   </button>
-                  <button class="btn btn-sm btn-outline-danger" (click)="openModal(allergy, allergyList, removeModal)" tooltip="remove">
-                    <i class="fa fa-minus" aria-hidden="true"></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            </tbody>
-          </table>
+                </th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let allergy of allergyList">
+                <th scope="row" style="width: 25%">{{allergy.name}}</th>
+                <td style="width: 25%">{{allergy.loinc}}</td>
+                <td style="width: 20%">{{allergy.status}}</td>
+                <td style="width: 20%">{{allergy.onset_date}}</td>
+                <td style="width: 10%">
+                  <div class="btn-group" role="group" aria-label="Lab Modify Buttons">
+                    <button class="btn btn-sm btn-outline-primary" tooltip="edit">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger" (click)="openModal(allergy, allergyList, removeModal)"
+                            tooltip="remove">
+                      <i class="fa fa-minus" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
 
-          <h4 id="medications">Medications</h4>
-          <table class="table table-sm table-hover">
-            <thead class="thead-light">
-            <tr>
-              <th scope="col" style="width: 25%">Name</th>
-              <th scope="col" style="width: 25%">ICD Dx Code</th>
-              <th scope="col" style="width: 20%">Status</th>
-              <th scope="col" style="width: 20%">Diagnosed</th>
-              <th scope="col" style="width: 10%">
-                <button type="button" class="btn btn-sm btn-success" (click)="openAddMed(addMedication)"
-                        tooltip="Add a new problem.">
-                  Add
-                </button>
-              </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr *ngFor="let med of medicationList">
-              <th scope="row" style="width: 25%">{{med.name}}</th>
-              <td style="width: 25%">{{med.description}}</td>
-              <td style="width: 20%">{{med.status}}</td>
-              <td style="width: 20%">{{med.start_date}}</td>
-              <td style="width: 10%">
-                <div class="btn-group" role="group" aria-label="Lab Modify Buttons">
-                  <button class="btn btn-sm btn-outline-primary" tooltip="edit">
-                    <i class="fa fa-pencil" aria-hidden="true"></i>
+          <h4 id="medications" class="hover" (click)="toggleSection('meds')">
+            Medications <i class="fa {{hidden.meds ? 'fa-arrow-right' : 'fa-arrow-down'}}"></i>
+          </h4>
+          <div [hidden]="hidden.meds">
+            <table class="table table-sm table-hover">
+              <thead class="thead-light">
+              <tr>
+                <th scope="col" style="width: 25%">Name</th>
+                <th scope="col" style="width: 25%">ICD Dx Code</th>
+                <th scope="col" style="width: 20%">Status</th>
+                <th scope="col" style="width: 20%">Diagnosed</th>
+                <th scope="col" style="width: 10%">
+                  <button type="button" class="btn btn-sm btn-success" (click)="openAddMed(addMedication)"
+                          tooltip="Add a new problem.">
+                    Add
                   </button>
-                  <button class="btn btn-sm btn-outline-danger" (click)="openModal(med, medicationList, removeModal)" tooltip="remove">
-                    <i class="fa fa-minus" aria-hidden="true"></i>
-                  </button>
-                </div>
-              </td>
-            </tr>
-            </tbody>
-          </table>
+                </th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let med of medicationList">
+                <th scope="row" style="width: 25%">{{med.name}}</th>
+                <td style="width: 25%">{{med.description}}</td>
+                <td style="width: 20%">{{med.status}}</td>
+                <td style="width: 20%">{{med.start_date}}</td>
+                <td style="width: 10%">
+                  <div class="btn-group" role="group" aria-label="Lab Modify Buttons">
+                    <button class="btn btn-sm btn-outline-primary" tooltip="edit">
+                      <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </button>
+                    <button class="btn btn-sm btn-outline-danger" (click)="openModal(med, medicationList, removeModal)"
+                            tooltip="remove">
+                      <i class="fa fa-minus" aria-hidden="true"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </split-area>
 
