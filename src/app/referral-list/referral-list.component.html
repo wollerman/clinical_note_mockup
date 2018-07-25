@@ -22,10 +22,10 @@
     <td style="width: 15%">{{referral.date}}</td>
     <td style="width: 10%">
       <div class="btn-group" role="group" aria-label="Basic example">
-        <button class="btn btn-sm btn-outline-primary">
+        <button class="btn btn-sm btn-outline-primary" tooltip="edit">
           <i class="fa fa-pencil" aria-hidden="true"></i>
         </button>
-        <button class="btn btn-sm btn-outline-danger" (click)="openModal(removeModal, referral)">
+        <button class="btn btn-sm btn-outline-danger" (click)="openModal(removeModal, referral)" tooltip="remove">
           <i class="fa fa-minus" aria-hidden="true"></i>
         </button>
       </div>

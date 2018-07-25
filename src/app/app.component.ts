@@ -31,8 +31,8 @@ export class AppComponent {
   hidden = {
     hp: false,
     mh: false,
-    fh: false,
-    sh: false,
+    fh: true,
+    sh: true,
     ros: false,
     pe: false,
     aller: false,
@@ -44,7 +44,7 @@ export class AppComponent {
   constructor(private modalService: BsModalService) {
 
     this.presentIllnessNotes = [
-      new NoteSection('Patient reported pain in right hand')
+      new NoteSection('Patient reported pain in right hand.')
     ];
 
     this.medicalHistoryNotes = [
@@ -64,6 +64,14 @@ export class AppComponent {
       new ChecklistItem('Check BP'),
       new ChecklistItem('Evaluate CVD'),
       new ChecklistItem('Reconcile Medications'),
+    ];
+
+    this.reviewOfSystemNotes = [
+      new NoteSection('')
+    ];
+
+    this.physicalExamNotes = [
+      new NoteSection()
     ];
 
   }
