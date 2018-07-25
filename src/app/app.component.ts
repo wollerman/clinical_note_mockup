@@ -1,7 +1,7 @@
 import {Component, TemplateRef} from '@angular/core';
 import {NoteSection} from './note-section/note-section.component';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap/modal';
-import {Allergy, Medication} from './shared/models';
+import {Allergy, ChecklistItem, Medication} from './shared/models';
 
 @Component({
   selector: 'app-root',
@@ -23,9 +23,11 @@ export class AppComponent {
   newAllergy: Allergy;
   medicationList: Medication[] = [];
   newMed: Medication;
+  checklist: ChecklistItem[] = [];
+  showAll = true;
 
-  assessmentSize = 50;
-  checklistSize = 0;
+  assessmentSize = 35;
+  checklistSize = 15;
 
   public modalRef: BsModalRef;
 
@@ -45,6 +47,13 @@ export class AppComponent {
 
     this.socialHistoryNotes = [
       new NoteSection('social history note 1')
+    ];
+
+    this.checklist = [
+      new ChecklistItem('Record patient\'s weight'),
+      new ChecklistItem('Check BP'),
+      new ChecklistItem('Evaluate CVD'),
+      new ChecklistItem('Reconcile Medications'),
     ];
 
   }
@@ -91,9 +100,6 @@ export class AppComponent {
     this.modalRef.hide();
   }
 
-  connect() {
-
-  }
 
   toggleChecklist() {
     if (this.checklistSize === 15) {

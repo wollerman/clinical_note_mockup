@@ -5,6 +5,7 @@
     <th scope="col">Name</th>
     <th scope="col">Type</th>
     <th scope="col">Status</th>
+    <th scope="col">Date</th>
     <th scope="col">
       <button type="button" class="btn btn-sm btn-success" (click)="openModal(addModal)"
               tooltip="Add a new referral.">
@@ -18,8 +19,8 @@
     <th scope="row" style="width: 25%">{{referral.name}}</th>
     <td>{{referral.type}}</td>
     <td>{{referral.status}}</td>
-    <td style="width: 20%">
-      <button class="btn btn-sm btn-secondary">View Source</button>
+    <td>{{referral.date}}</td>
+    <td>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="openModal(removeModal, referral)">
         <span aria-hidden="true">&times;</span>
       </button>

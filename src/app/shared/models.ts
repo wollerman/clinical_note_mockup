@@ -11,3 +11,13 @@ export class Medication {
   dose: string;
   status: string;
 }
+
+
+export class ChecklistItem {
+  name: string;
+  checked: boolean;
+
+  constructor(name: string) {
+    this.name = name;
+  }
+}

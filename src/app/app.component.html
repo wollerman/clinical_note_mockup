@@ -2,7 +2,7 @@
   <div class="split-example" style="height: 860px">
     <split direction="horizontal" [useTransition]="true">
       <split-area [size]="50">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="border-bottom: 1px solid black">
           <a class="navbar-brand" href="#">Clinical Notes</a>
           <div class="btn-group" role="group" aria-label="Basic example">
 
@@ -130,31 +130,47 @@
       </split-area>
       <split-area [size]="assessmentSize">
         <div class="box-shadow mx-auto">
-          <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="border-bottom: 1px solid black">
             <a class="navbar-brand" href="#">Assessment</a>
-            <div class="align-content-end">
-              <button class="btn align-content-end" (click)="toggleChecklist()">
+            <div class="ml-auto">
+              <button class="btn navbar-text" (click)="toggleChecklist()">
                 checklist
               </button>
             </div>
-
           </nav>
         </div>
 
         <div class="box-shadow mx-auto px-3" style="width: 97%;">
           <app-problem-list class="mb-2"></app-problem-list>
-          <h4>Plan</h4>
-
-          <textarea class="form-control mb-3" rows="3"></textarea>
           <app-lab-list class="mb-2"></app-lab-list>
           <app-referral-list class="mb-2"></app-referral-list>
-
-
+          <h4>Plan</h4>
+          <textarea class="form-control mb-3" rows="3"></textarea>
         </div>
 
 
       </split-area>
       <split-area [size]="checklistSize">
+        <div class="box-shadow mx-auto">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="border-bottom: 1px solid black">
+            <a class="navbar-brand" href="#">Quality Checklist</a>
+            <button type="button" class="close navbar-text ml-auto" data-dismiss="modal" aria-label="Close"
+                    (click)="toggleChecklist()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+
+          </nav>
+        </div>
+        <div class="box-shadow mx-auto text-left px-3 pt-2">
+          <div *ngFor="let item of checklist">
+            <div class="form-check py-1">
+              <input class="form-check-input" type="checkbox" value="" id="{{item.name}}">
+              <label class="form-check-label" for="{{item.name}}">
+                {{item.name}}
+              </label>
+            </div>
+          </div>
+        </div>
 
       </split-area>
     </split>
@@ -172,18 +188,6 @@
   <div class="modal-footer">
     <button type="button" class="btn btn-default" (click)="dismiss()">Cancel</button>
     <button type="button" class="btn btn-danger" (click)="remove()">Remove</button>
-  </div>
-</ng-template>
-
-<ng-template #connectModal>
-  <div class="modal-header">
-  </div>
-  <div class="modal-body">
-    Connect Modal
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-default" (click)="dismiss()">Cancel</button>
-    <button type="button" class="btn btn-danger" (click)="connect()">Connect</button>
   </div>
 </ng-template>
 
