@@ -1,11 +1,12 @@
 <h4 class="text-left">Labs</h4>
-<table class="table table-sm">
-  <thead>
+<table class="table table-sm table-hover">
+  <thead class="thead-light">
   <tr>
-    <th scope="col">Tests</th>
-    <th scope="col">Last Update</th>
-    <th scope="col">Status</th>
-    <th scope="col">
+    <th scope="col" style="width: 30%">Tests</th>
+    <th scope="col" style="width: 20%">Loinc Code</th>
+    <th scope="col" style="width: 25%">Status</th>
+    <th scope="col" style="width: 15%">Last Update</th>
+    <th scope="col" style="width: 10%">
       <button type="button" class="btn btn-sm btn-success" (click)="openModal(addModal)"
               tooltip="Add a new lab.">
         Add
@@ -15,13 +16,19 @@
   </thead>
   <tbody>
   <tr *ngFor="let lab of labList">
-    <th scope="row" style="width: 25%">{{lab.test}}</th>
-    <td>{{lab.date}}</td>
-    <td>{{lab.status}}</td>
-    <td>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="openModal(removeModal, lab)">
-        <span aria-hidden="true">&times;</span>
-      </button>
+    <th scope="row" style="width: 30%">{{lab.test}}</th>
+    <td style="width: 20%">{{lab.loinc}}</td>
+    <td style="width: 25%">{{lab.status}}</td>
+    <td style="width: 15%">{{lab.date}}</td>
+    <td style="width: 10%">
+      <div class="btn-group" role="group" aria-label="Lab Modify Buttons">
+        <button class="btn btn-sm btn-outline-primary" tooltip="edit">
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        </button>
+        <button class="btn btn-sm btn-outline-danger" (click)="openModal(removeModal, lab)" tooltip="remove">
+          <i class="fa fa-minus" aria-hidden="true"></i>
+        </button>
+      </div>
     </td>
   </tr>
   </tbody>
@@ -66,6 +73,9 @@
         <select class="form-control" [(ngModel)]="newLabStatus" name="status">
           <option *ngFor="let s of labStatues">{{s}}</option>
         </select>
+
+        <label>Loinc Code</label>
+        <input class="form-control" [(ngModel)]="newLabLoinc" name="loinc">
 
       </div>
     </form>

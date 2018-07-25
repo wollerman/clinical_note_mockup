@@ -1,5 +1,6 @@
 <div class="container-flex">
   <div class="split-example" style="height: 860px">
+
     <split direction="horizontal" [useTransition]="true">
       <split-area [size]="50">
         <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="border-bottom: 1px solid black">
@@ -17,58 +18,59 @@
           </div>
         </nav>
 
-        <div class="box-shadow mx-auto text-left px-3">
+        <div class="box-shadow mx-auto text-left px-3 mb-4 pb-4 pt-2">
           <h4 id="present-illness">History of Present Illness</h4>
           <div *ngFor="let note of presentIllnessNotes">
             <app-note-section [text]="note.text" [type]="note.type"
                               (removeEmit)="openModal($event, presentIllnessNotes, removeModal)"></app-note-section>
           </div>
-          <button class="btn btn-secondary mb-4" (click)="add(presentIllnessNotes)">Add</button>
+          <button class="btn btn-outline-success ml-3 mb-3" (click)="add(presentIllnessNotes)">Add</button>
 
           <h4 id="medical-history">Medical History</h4>
           <div *ngFor="let note of medicalHistoryNotes">
             <app-note-section [text]="note.text" [type]="note.type"
                               (removeEmit)="openModal($event, medicalHistoryNotes, removeModal)"></app-note-section>
           </div>
-          <button class="btn btn-secondary mb-4" (click)="add(medicalHistoryNotes)">Add</button>
+          <button class="btn btn-outline-success ml-3 mb-3" (click)="add(medicalHistoryNotes)">Add</button>
 
           <h4 id="family-history">Family History</h4>
           <div *ngFor="let note of familyHistoryNotes">
             <app-note-section [text]="note.text" [type]="note.type"
                               (removeEmit)="openModal($event, familyHistoryNotes, removeModal)"></app-note-section>
           </div>
-          <button class="btn btn-secondary mb-4" (click)="add(familyHistoryNotes)">Add</button>
+          <button class="btn btn-outline-success ml-3 mb-3" (click)="add(familyHistoryNotes)">Add</button>
 
           <h4 id="social-history">Social History</h4>
           <div *ngFor="let note of socialHistoryNotes">
             <app-note-section [text]="note.text" [type]="note.type"
                               (removeEmit)="openModal($event, socialHistoryNotes, removeModal)"></app-note-section>
           </div>
-          <button class="btn btn-secondary mb-4" (click)="add(socialHistoryNotes)">Add</button>
+          <button class="btn btn-outline-success ml-3 mb-3" (click)="add(socialHistoryNotes)">Add</button>
 
           <h4 id="review-of-system">Review of System</h4>
           <div *ngFor="let note of reviewOfSystemNotes">
             <app-note-section [text]="note.text" [type]="note.type"
                               (removeEmit)="openModal($event, reviewOfSystemNotes, removeModal)"></app-note-section>
           </div>
-          <button class="btn btn-secondary mb-4" (click)="add(reviewOfSystemNotes)">Add</button>
+          <button class="btn btn-outline-success ml-3 mb-3" (click)="add(reviewOfSystemNotes)">Add</button>
 
           <h4 id="physical-exam">Physical Exam</h4>
           <div *ngFor="let note of physicalExamNotes">
             <app-note-section [text]="note.text" [type]="note.type"
                               (removeEmit)="openModal($event, physicalExamNotes, removeModal)"></app-note-section>
           </div>
-          <button class="btn btn-secondary mb-4" (click)="add(physicalExamNotes)">Add</button>
+          <button class="btn btn-outline-success ml-3 mb-3" (click)="add(physicalExamNotes)">Add</button>
 
 
           <h4 id="allergies">Allergies</h4>
-          <table class="table table-sm">
-            <thead>
+          <table class="table table-sm table-hover">
+            <thead class="thead-light">
             <tr>
               <th scope="col" style="width: 25%">Name</th>
-              <th scope="col">Onset Date</th>
-              <th scope="col">Status</th>
-              <th scope="col" style="width: 20%">
+              <th scope="col" style="width: 25%">Loinc Code</th>
+              <th scope="col" style="width: 20%">Status</th>
+              <th scope="col" style="width: 20%">Onset Date</th>
+              <th scope="col" style="width: 10%">
                 <button type="button" class="btn btn-sm btn-success" (click)="openAddAllergy(addAllergModaly)"
                         tooltip="Add a new lab.">
                   Add
@@ -79,28 +81,32 @@
             <tbody>
             <tr *ngFor="let allergy of allergyList">
               <th scope="row" style="width: 25%">{{allergy.name}}</th>
-              <td>{{allergy.onset_date}}</td>
-              <td>{{allergy.status}}</td>
-              <td style="width: 20%">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                        (click)="openModal(removeModal, allergy)">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+              <td style="width: 25%">{{allergy.loinc}}</td>
+              <td style="width: 20%">{{allergy.status}}</td>
+              <td style="width: 20%">{{allergy.onset_date}}</td>
+              <td style="width: 10%">
+                <div class="btn-group" role="group" aria-label="Lab Modify Buttons">
+                  <button class="btn btn-sm btn-outline-primary" tooltip="edit">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger" (click)="openModal(allergy, allergyList, removeModal)" tooltip="remove">
+                    <i class="fa fa-minus" aria-hidden="true"></i>
+                  </button>
+                </div>
               </td>
             </tr>
             </tbody>
           </table>
 
-
           <h4 id="medications">Medications</h4>
           <table class="table table-sm table-hover">
-            <thead>
+            <thead class="thead-light">
             <tr>
               <th scope="col" style="width: 25%">Name</th>
-              <th scope="col">ICD Dx Code</th>
-              <th scope="col">Status</th>
-              <th scope="col">Diagnosed</th>
-              <th scope="col" style="width: 20%">
+              <th scope="col" style="width: 25%">ICD Dx Code</th>
+              <th scope="col" style="width: 20%">Status</th>
+              <th scope="col" style="width: 20%">Diagnosed</th>
+              <th scope="col" style="width: 10%">
                 <button type="button" class="btn btn-sm btn-success" (click)="openAddMed(addMedication)"
                         tooltip="Add a new problem.">
                   Add
@@ -111,45 +117,47 @@
             <tbody>
             <tr *ngFor="let med of medicationList">
               <th scope="row" style="width: 25%">{{med.name}}</th>
-              <td>{{med.description}}</td>
-              <td>{{med.status}}</td>
-              <td>{{med.start_date}}</td>
-              <td style="width: 20%">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                        (click)="openModal(removeModal, med)">
-                  <span aria-hidden="true">&times;</span>
-                </button>
+              <td style="width: 25%">{{med.description}}</td>
+              <td style="width: 20%">{{med.status}}</td>
+              <td style="width: 20%">{{med.start_date}}</td>
+              <td style="width: 10%">
+                <div class="btn-group" role="group" aria-label="Lab Modify Buttons">
+                  <button class="btn btn-sm btn-outline-primary" tooltip="edit">
+                    <i class="fa fa-pencil" aria-hidden="true"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger" (click)="openModal(med, medicationList, removeModal)" tooltip="remove">
+                    <i class="fa fa-minus" aria-hidden="true"></i>
+                  </button>
+                </div>
               </td>
             </tr>
             </tbody>
-
           </table>
-
         </div>
-
       </split-area>
+
+
       <split-area [size]="assessmentSize">
         <div class="box-shadow mx-auto">
           <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="border-bottom: 1px solid black">
             <a class="navbar-brand" href="#">Assessment</a>
             <div class="ml-auto">
-              <button class="btn" (click)="toggleChecklist()">
-                checklist
+              <button class="btn btn-outline-secondary" (click)="toggleChecklist()">
+                <i class="fa fa-bars" aria-hidden="true"></i>
               </button>
             </div>
           </nav>
         </div>
-
-        <div class="box-shadow mx-auto px-3" style="width: 97%;">
+        <div class="box-shadow mx-auto px-3 pt-2" style="width: 97%;">
           <app-problem-list class="mb-2"></app-problem-list>
           <app-lab-list class="mb-2"></app-lab-list>
           <app-referral-list class="mb-2"></app-referral-list>
           <h4>Plan</h4>
-          <textarea class="form-control mb-3" rows="3"></textarea>
+          <textarea class="form-control mb-3" rows="6"></textarea>
         </div>
-
-
       </split-area>
+
+
       <split-area [size]="checklistSize">
         <div class="box-shadow mx-auto">
           <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="border-bottom: 1px solid black">
@@ -158,7 +166,6 @@
                     (click)="toggleChecklist()">
               <span aria-hidden="true">&times;</span>
             </button>
-
           </nav>
         </div>
         <div class="box-shadow mx-auto text-left px-3 pt-2">
@@ -171,8 +178,8 @@
             </div>
           </div>
         </div>
-
       </split-area>
+
     </split>
   </div>
 

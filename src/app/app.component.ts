@@ -26,8 +26,8 @@ export class AppComponent {
   checklist: ChecklistItem[] = [];
   showAll = true;
 
-  assessmentSize = 35;
-  checklistSize = 15;
+  assessmentSize = 50;
+  checklistSize = 0;
 
   public modalRef: BsModalRef;
 

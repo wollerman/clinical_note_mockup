@@ -1,12 +1,12 @@
 <h4 class="text-left">Problems</h4>
 <table class="table table-sm table-hover">
-  <thead>
+  <thead class="thead-light">
   <tr>
-    <th scope="col">Description</th>
-    <th scope="col">ICD Dx Code</th>
-    <th scope="col">Status</th>
-    <th scope="col">Diagnosed</th>
-    <th scope="col">
+    <th scope="col" style="width: 30%">Description</th>
+    <th scope="col" style="width: 20%">ICD Dx Code</th>
+    <th scope="col" style="width: 25%">Status</th>
+    <th scope="col" style="width: 15%">Diagnosed</th>
+    <th scope="col" style="width: 10%">
       <button type="button" class="btn btn-sm btn-success" (click)="openModal(addProblem)"
               tooltip="Add a new problem.">
         Add
@@ -16,14 +16,19 @@
   </thead>
   <tbody>
   <tr *ngFor="let problem of problemList">
-    <th scope="row" style="width: 25%">{{problem.description}}</th>
-    <td>{{problem.icd10}}</td>
-    <td>{{problem.status}}</td>
-    <td>{{problem.diagnosed}}</td>
-    <td>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="openModal(removeProblem, problem)">
-        <span aria-hidden="true">&times;</span>
-      </button>
+    <th scope="row" style="width: 30%">{{problem.description}}</th>
+    <td style="width: 20%">{{problem.icd10}}</td>
+    <td style="width: 25%">{{problem.status}}</td>
+    <td style="width: 15%">{{problem.diagnosed}}</td>
+    <td style="width: 10%">
+      <div class="btn-group" role="group" aria-label="Lab Modify Buttons">
+        <button class="btn btn-sm btn-outline-primary" tooltip="edit">
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        </button>
+        <button class="btn btn-sm btn-outline-danger" (click)="openModal(removeProblem, problem)" tooltip="remove">
+          <i class="fa fa-minus" aria-hidden="true"></i>
+        </button>
+      </div>
     </td>
   </tr>
   </tbody>

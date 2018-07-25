@@ -1,5 +1,6 @@
 export class Allergy {
   name: string;
+  loinc: string;
   onset_date: string;
   status: string;
 }

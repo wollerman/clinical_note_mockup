@@ -16,6 +16,7 @@ export class LabListComponent implements OnInit {
   public newLabName;
   public newLabDate;
   public newLabStatus;
+  public newLabLoinc;
 
   public testOptions = [
     'CBC Blood test',
@@ -33,7 +34,8 @@ export class LabListComponent implements OnInit {
       new Lab(
         'Hemoccult sp4 Stl Ql:',
         '2010-10-13',
-        'Results Reviewed with Patient'
+        'Results Reviewed with Patient',
+        '12503-9'
       )
     ];
   }
@@ -56,6 +58,7 @@ export class LabListComponent implements OnInit {
           this.newLabName,
           this.newLabDate,
           this.newLabStatus,
+          this.newLabLoinc
         )
       );
     }
@@ -80,11 +83,13 @@ export class Lab {
   test: string;
   date: string;
   status: string;
+  loinc: string;
 
-  constructor(test, date, status) {
+  constructor(test, date, status, loinc) {
     this.test = test;
     this.date = date;
     this.status = status;
+    this.loinc = loinc;
 
   }
 
