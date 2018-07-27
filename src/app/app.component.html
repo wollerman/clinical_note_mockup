@@ -6,14 +6,15 @@
         <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top" style="border-bottom: 1px solid black">
           <a class="navbar-brand" href="#">Clinical Note</a>
           <div class="btn-group ml-auto" role="group" aria-label="Jump to Note Section">
-            <button class="btn btn-secondary" [ngx-scroll-to]="'present-illness'">HPI</button>
-            <button class="btn btn-secondary" [ngx-scroll-to]="'medical-history'">MH</button>
-            <button class="btn btn-secondary" [ngx-scroll-to]="'family-history'">FH</button>
-            <button class="btn btn-secondary" [ngx-scroll-to]="'social-history'">SocH</button>
-            <button class="btn btn-secondary" [ngx-scroll-to]="'review-of-system'">RoS</button>
-            <button class="btn btn-secondary" [ngx-scroll-to]="'physical-exam'">PE</button>
-            <button class="btn btn-secondary" [ngx-scroll-to]="'allergies'">Allergies</button>
-            <button class="btn btn-secondary" [ngx-scroll-to]="'medications'">Meds</button>
+            <button class="btn btn-outline-secondary" (click)="toggleAllSections()">{{hidden.all ? 'Hide All' : 'Show All'}}</button>
+            <button class="btn {{hidden.hp ? 'btn-outline-secondary' : 'btn-secondary'}}" (click)="toggleSection('hp')">HPI</button>
+            <button class="btn btn-secondary {{hidden.mh ? 'btn-outline-secondary' : 'btn-secondary'}}" (click)="toggleSection('mh')">MH</button>
+            <button class="btn btn-secondary {{hidden.fh ? 'btn-outline-secondary' : 'btn-secondary'}}" (click)="toggleSection('fh')">FH</button>
+            <button class="btn btn-secondary {{hidden.sh ? 'btn-outline-secondary' : 'btn-secondary'}}" (click)="toggleSection('sh')">SocH</button>
+            <button class="btn btn-secondary {{hidden.ros ? 'btn-outline-secondary' : 'btn-secondary'}}" (click)="toggleSection('ros')">RoS</button>
+            <button class="btn btn-secondary {{hidden.pe ? 'btn-outline-secondary' : 'btn-secondary'}}" (click)="toggleSection('pe')">PE</button>
+            <button class="btn btn-secondary {{hidden.aller ? 'btn-outline-secondary' : 'btn-secondary'}}" (click)="toggleSection('aller')">Allergies</button>
+            <button class="btn btn-secondary {{hidden.meds ? 'btn-outline-secondary' : 'btn-secondary'}}" (click)="toggleSection('meds')">Meds</button>
           </div>
         </nav>
 
@@ -26,7 +27,6 @@
               <app-note-section [noteSection]="note"
                                 (removeEmit)="openModal($event, presentIllnessNotes, removeModal)"></app-note-section>
             </div>
-            <button class="btn btn-outline-success ml-3 mb-3" (click)="add(presentIllnessNotes)">Add</button>
           </div>
 
           <h4 id="medical-history" class="hover" (click)="toggleSection('mh')">
@@ -37,7 +37,6 @@
               <app-note-section [noteSection]="note"
                                 (removeEmit)="openModal($event, medicalHistoryNotes, removeModal)"></app-note-section>
             </div>
-            <button class="btn btn-outline-success ml-3 mb-3" (click)="add(medicalHistoryNotes)">Add</button>
           </div>
 
           <h4 id="family-history" class="hover" (click)="toggleSection('fh')">
@@ -48,7 +47,6 @@
               <app-note-section [noteSection]="note"
                                 (removeEmit)="openModal($event, familyHistoryNotes, removeModal)"></app-note-section>
             </div>
-            <button class="btn btn-outline-success ml-3 mb-3" (click)="add(familyHistoryNotes)">Add</button>
           </div>
 
           <h4 id="social-history" class="hover" (click)="toggleSection('sh')">
@@ -59,7 +57,6 @@
               <app-note-section [noteSection]="note"
                                 (removeEmit)="openModal($event, socialHistoryNotes, removeModal)"></app-note-section>
             </div>
-            <button class="btn btn-outline-success ml-3 mb-3" (click)="add(socialHistoryNotes)">Add</button>
           </div>
 
           <h4 id="review-of-system" class="hover" (click)="toggleSection('ros')">
@@ -70,7 +67,6 @@
               <app-note-section [noteSection]="note"
                                 (removeEmit)="openModal($event, reviewOfSystemNotes, removeModal)"></app-note-section>
             </div>
-            <button class="btn btn-outline-success ml-3 mb-3" (click)="add(reviewOfSystemNotes)">Add</button>
           </div>
 
           <h4 id="physical-exam" class="hover" (click)="toggleSection('pe')">
@@ -81,7 +77,6 @@
               <app-note-section [noteSection]="note"
                                 (removeEmit)="openModal($event, physicalExamNotes, removeModal)"></app-note-section>
             </div>
-            <button class="btn btn-outline-success ml-3 mb-3" (click)="add(physicalExamNotes)">Add</button>
           </div>
 
 

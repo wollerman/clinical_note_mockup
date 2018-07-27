@@ -24,7 +24,6 @@ export class AppComponent {
   medicationList: Medication[] = [];
   newMed: Medication;
   checklist: ChecklistItem[] = [];
-  showAll = true;
 
   assessmentSize = 40;
   checklistSize = 15;
@@ -36,7 +35,8 @@ export class AppComponent {
     ros: false,
     pe: false,
     aller: false,
-    meds: false
+    meds: false,
+    all: false
   };
 
   public modalRef: BsModalRef;
@@ -131,6 +131,11 @@ export class AppComponent {
 
   toggleSection(section) {
     this.hidden[section] = !this.hidden[section];
+  }
+
+  toggleAllSections() {
+    Object.keys(this.hidden).forEach(k => this.hidden[k] = this.hidden.all);
+    this.hidden.all = !this.hidden.all;
   }
 
 
